@@ -4,10 +4,13 @@ export class Main extends Component {
   render() {
     return (
       <main>
-        <article>
-          <h1>Main post</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores nemo eos officiis tenetur sunt et! Harum dolorem voluptas molestiae, eius culpa aperiam asperiores architecto deserunt aliquid numquam ea repellat quasi?</p>
-        </article>
+        <div className="full-screen-wrapper">
+          <article>
+            <h1>Main post</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores nemo eos officiis tenetur sunt et! Harum dolorem voluptas molestiae, eius culpa aperiam asperiores architecto deserunt aliquid numquam ea repellat quasi?</p>
+            <img src="" alt="Brushetta" />
+          </article>
+        </div>
         <section>
           <article>
             <h2>1 post</h2>
