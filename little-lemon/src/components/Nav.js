@@ -5,10 +5,12 @@ export class Nav extends Component {
     return (
       <nav>
         <ul>
-          <li>item 1</li>
-          <li>item 2</li>
-          <li>item 3</li>
-          <li>item 4</li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Reservations</a></li>
+          <li><a href="#">Order online</a></li>
+          <li><a href="#">Login</a></li>
         </ul>
       </nav>
     )

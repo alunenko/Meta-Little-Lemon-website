@@ -4,7 +4,7 @@ export class Header extends Component {
   render() {
     return (
       <header>
-        <img src="" alt="logo" />
+        <img src="./assets/Logo.svg" alt="logo" />
       </header>
     )
   }
