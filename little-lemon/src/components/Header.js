@@ -4,7 +4,7 @@ import Nav from './Nav';
 export class Header extends Component {
   render() {
     return (
-      <header class="pt-3 pb-3">
+      <header className="pt-sm-2 pt-lg-4 pb-sm-2 pb-lg-4">
         <Nav />
       </header>
     )

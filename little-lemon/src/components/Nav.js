@@ -3,40 +3,40 @@ import React, { Component } from 'react'
 export class Nav extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-lg p-0">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-lg p-0">
+        <div className="container-fluid">
           <img src="./assets/logo.svg"
                alt="logo" />
-          <button class="navbar-toggler"
+          <button className="navbar-toggler m-custom"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#navbarNav"
                   aria-controls="navbarNav"
                   aria-expanded="false"
                   aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse justify-content-end"
+          <div className="collapse navbar-collapse justify-content-end"
                id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
+            <ul className="navbar-nav">
+              <li className="nav-item">
                 {/* <a class="nav-link active" aria-current="page" href="#">Home</a> */}
-                <a class="nav-link active" href="#">Home</a>
+                <a className="nav-link active" href="#">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">About</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Menu</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Menu</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Reservations</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Reservations</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Order Online</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Order Online</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Login</a>
               </li>
             </ul>
           </div>
