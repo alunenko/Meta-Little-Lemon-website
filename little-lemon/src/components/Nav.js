@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class Nav extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg p-0">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <img src="./assets/logo.svg"
                alt="logo" />

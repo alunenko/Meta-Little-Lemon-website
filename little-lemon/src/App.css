@@ -4,11 +4,22 @@
 }
 
 :root {
+  /* primary colors */
   --ui-kit-yellow: #F4CE14;
   --ui-kit-green: #495E57;
+
   --ui-kit-white: white;
   --ui-kit-black: black;
+
+  /* secondary colors */
   --ui-kit-orange: #FF7E36;
+
+  /* highlight colors */
+  --ui-kit-light-green: #edefee;
+}
+
+main {
+  padding-top: 56px;
 }
 
 .navbar-toggler.m-custom {
@@ -55,7 +66,7 @@ main > section {
   position: absolute;
   top: 7rem;
   right: 1.5rem;
-  border-radius: 16px;
+  border-radius: 0.5rem;
   width: 100%;
   max-width: 136px;
   height: 136px;
@@ -68,7 +79,58 @@ main > section {
 }
 
 .card-wrapper {
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.card.m-custom {
+  border: 0 none;
+  border-radius: 0.5rem;
+  background-color: var(--ui-kit-light-green);
+
+  font-family: Karla;
+}
+
+.card.m-custom .card-title {
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+
+  color: var(--ui-kit-black);
+}
+
+.card.m-custom .card-price {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+
+  color: var(--ui-kit-orange);
+}
+
+.card.m-custom .card-text {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+
+  color: var(--ui-kit-green);
+}
+
+.card.m-custom  .card-text.m-order {
+  font-family: Karla;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 800;
+
+  color: var(--ui-kit-black);
+}
+
+.card-text.m-order .icon-motobike {
+  height: 15px;
+}
+
+.card.m-custom img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  max-height: 150px;
 }
 
 footer {
@@ -86,7 +148,7 @@ footer {
   align-items: center;
 
   font-weight: bold;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   background: var(--ui-kit-yellow);
   color: var(--ui-kit-black);
 
@@ -116,10 +178,6 @@ a.ll-button-primary:hover {
     flex-direction: row;
     justify-content: space-between;
   }
-
-  .card-wrapper {
-    flex-direction: column;
-  }
 }
 
 @media (min-width: 992px) {
@@ -127,7 +185,7 @@ a.ll-button-primary:hover {
   .full-screen-wrapper > article,
   main > section,
   .specials {
-    width: calc(100% * (2 / 3));
+    width: calc(100% * (3 / 4));
     margin: 0 auto;
   }
 
@@ -143,5 +201,9 @@ a.ll-button-primary:hover {
 
   .home-main-article p {
     max-width: calc(100% / 3);
+  }
+
+  .card-wrapper {
+    flex-direction: row;
   }
 }
