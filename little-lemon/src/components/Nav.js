@@ -21,10 +21,10 @@ export class Nav extends Component {
             <ul className="navbar-nav">
               <li className="nav-item">
                 {/* <a class="nav-link active" aria-current="page" href="#">Home</a> */}
-                <a className="nav-link active" href="#">Home</a>
+                <a className="nav-link active" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">About</a>
+                <a className="nav-link" href="/about">About</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Menu</a>
@@ -46,4 +46,4 @@ export class Nav extends Component {
   }
 }
 
-export default Nav
+export default Nav;
