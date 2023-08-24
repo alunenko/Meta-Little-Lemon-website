@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import logoImg from '../assets/logo.svg';
 
 export class Nav extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <img src="./assets/logo.svg"
+          <img src={logoImg}
                alt="logo" />
           <button className="navbar-toggler m-custom"
                   type="button"
