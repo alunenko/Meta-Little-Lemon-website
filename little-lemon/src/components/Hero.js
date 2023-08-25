@@ -12,7 +12,7 @@ export class Hero extends Component {
                  alt="Brushetta" />
             <small>Chicago</small>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <a href="#" role="button" className='ll-button-primary mt-3 mt-lg-0'>Reserve a Table</a>
+            <a href="/reserve-a-table" role="button" className='ll-button-primary mt-3 mt-lg-0'>Reserve a Table</a>
           </article>
         </div>
         <div className="clearfix"></div>

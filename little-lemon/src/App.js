@@ -1,9 +1,10 @@
 import './App.css';
-import Header from './components/Header';
+import {Routes, Route} from 'react-router-dom';
+import Header from './components/Header/Header';
+import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import Aboutpage from './pages/Aboutpage';
-import Footer from './components/Footer';
-import {Routes, Route} from 'react-router-dom';
+import Reservationpage from './pages/Reservationpage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<Aboutpage />} />
+          <Route path="/reserve-a-table" element={<Reservationpage />} />
         </Routes>
       </main>
       <Footer />

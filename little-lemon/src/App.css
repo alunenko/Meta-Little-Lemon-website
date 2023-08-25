@@ -19,7 +19,8 @@
 }
 
 main {
-  padding-top: 72px;
+  min-height: calc(100vh - 72px); /*  72 is footer size */
+  padding: 72px 0 1rem;
 }
 
 .navbar-toggler.m-custom {
@@ -135,12 +136,14 @@ main > section {
 
 footer {
   padding: 25px 0;
+  box-sizing: border-box;
   background-color: var(--ui-kit-green);
   color: var(--ui-kit-white);
   text-align: center;
 }
 
 .ll-button-primary {
+  border: 0 none;
   padding: 0.3125rem 0.9375rem;
 
   display: inline-flex;
@@ -161,7 +164,7 @@ footer {
 }
 
 .ll-button-primary:hover:active {
-  box-shadow: inset -4px -4px 12px var(--ui-kit-green);
+  box-shadow: inset 0 0 12px var(--ui-kit-green);
 }
 
 a.ll-button-primary,

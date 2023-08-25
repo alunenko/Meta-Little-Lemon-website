@@ -1,0 +1,38 @@
+form {
+    padding: 1.5rem;
+}
+
+fieldset {
+    flex-direction: column;
+}
+
+fieldset div:last-child {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+}
+
+@media (min-width: 992px) {
+    form {
+        width: calc(100% * (3 / 4));
+        margin: 0 auto;
+    }
+
+    .ll-button-primary {
+        max-width: 300px;
+    }
+
+    fieldset {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    legend,
+    button {
+        flex: 1 0 auto;
+    }
+
+    .form-group {
+        flex: 0 0 calc(50% - 1rem); /* gap-3 */
+    }
+}

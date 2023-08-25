@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import logoImg from '../assets/logo.svg';
+import './Nav.css';
+import logoImg from '../../assets/logo.svg';
 
 export class Nav extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg m-custom">
         <div className="container-fluid">
-          <img src={logoImg}
-               alt="logo" />
+          <a href="/">
+            <img src={logoImg}
+                alt="logo" />
+          </a>
           <button className="navbar-toggler m-custom"
                   type="button"
                   data-bs-toggle="collapse"
