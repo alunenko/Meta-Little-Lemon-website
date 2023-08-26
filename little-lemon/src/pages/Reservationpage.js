@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import BookingForm from '../components/BookingForm/BookingForm';
 
 export class Reservationpage extends Component {
-  render() {
+  render(props) {
+    const { availableTimes, state, handleChange } = this.props;
+
     return (
         <>
-          <BookingForm/>
+          <BookingForm availableTimes={availableTimes} state={state} handleChange={handleChange}/>
         </>
     )
   }

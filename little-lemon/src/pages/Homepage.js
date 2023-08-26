@@ -4,6 +4,26 @@ import Card from '../components/Card';
 import Hero from '../components/Hero';
 
 export class Homepage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.availableTimes = [
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00"
+    ];
+
+    this.state = {
+      date: '',
+      time: this.availableTimes[1],
+      guestsAmount: 1,
+      occasion: 'Birthday'
+    };
+  }
+
   render() {
     return (
       <>
