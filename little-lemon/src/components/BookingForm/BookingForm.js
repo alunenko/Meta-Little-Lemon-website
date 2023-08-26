@@ -13,7 +13,7 @@ const BookingForm = ({ availableTimes, state, handleChange }) => {
   }
 
   return (
-    <form onSubmit={this.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <fieldset className='d-flex justify-content-between gap-3'>
         <legend>Table reservation:</legend>
         <div className="form-group">
