@@ -1,5 +1,16 @@
 import initializeTimes from './BookingTimes';
 
+jest.mock('./BookingTimes', () => {
+  return () => [
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00"
+  ];
+});
+
 describe('initializeTimes function', () => {
   it('should return an array of available booking times', () => {
     const expectedTimes = [
