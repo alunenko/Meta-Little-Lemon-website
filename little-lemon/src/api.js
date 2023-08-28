@@ -44,7 +44,6 @@ const fetchAPI = (date) => {
             result = hours.map(hour => `${hour < 10 ? '0'+hour : hour}:00`).sort();
         }
 
-        console.log('123 result ', result);
         return(result);
 };
 

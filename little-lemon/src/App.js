@@ -8,12 +8,14 @@ import Aboutpage from './pages/Aboutpage';
 import Reservationpage from './pages/Reservationpage';
 import initializeTimes from './components/BookingForm/BookingTimes/BookingTimes';
 import updateTimes from './components/BookingForm/UpdateTimes/UpdateTimes';
+import ConfirmedBooking from './components/BookingForm/ConfirmedBooking/ConfirmedBooking';
 
 const initialState = {
   date: '',
   time: '',
   guestsAmount: 1,
-  occasion: 'Birthday'
+  occasion: 'Birthday',
+  a: false
 };
 
 const reducer = (state, action) => {
@@ -23,6 +25,11 @@ const reducer = (state, action) => {
         ...state,
         date: action.payload
       };
+    case 'TOGGLE_A': // Add a case for toggling a
+      return {
+        ...state,
+        a: !state.a
+    };
     default:
       return state;
   }
@@ -45,6 +52,20 @@ const App = () => {
     return availableBookingTimes;
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+
+    dispatch({
+      type: 'TOGGLE_A'
+    });
+  };
+
   return (
     <>
       <Header />
@@ -55,11 +76,12 @@ const App = () => {
           <Route
             path="/reserve-a-table"
             element={
-              <Reservationpage
+              !bookingState.a ? <Reservationpage
                 availableTimes={availableBookingTimes}
                 state={bookingState}
                 handleChange={handleBookingInputChange}
-              />
+                handleSubmit={handleSubmit}
+              /> : <ConfirmedBooking/>
             }
           />
         </Routes>

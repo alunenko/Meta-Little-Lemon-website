@@ -2,22 +2,7 @@ import React, { Component } from 'react';
 import './BookingForm.css';
 import {TodayAPI, MaxReservationDateAPI } from '../../api';
 
-// Example usage
-// const reservationDate = new Date(); // Provide your desired date here
-// const availableTimes = fetchAPI(reservationDate);
-// console.log(availableTimes);
-
-const BookingForm = ({ availableTimes, state, handleChange }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const form = e.target;
-    const formData = new FormData(form);
-
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
-  }
-
+const BookingForm = ({ availableTimes, state, handleChange, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <fieldset className='d-flex justify-content-between gap-3'>
