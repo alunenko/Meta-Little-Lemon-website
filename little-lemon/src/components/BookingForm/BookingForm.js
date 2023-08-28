@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import './BookingForm.css';
+import {TodayAPI, MaxReservationDateAPI } from '../../api';
+
+// Example usage
+// const reservationDate = new Date(); // Provide your desired date here
+// const availableTimes = fetchAPI(reservationDate);
+// console.log(availableTimes);
 
 const BookingForm = ({ availableTimes, state, handleChange }) => {
   const handleSubmit = (e) => {
@@ -23,6 +29,8 @@ const BookingForm = ({ availableTimes, state, handleChange }) => {
                  name="date"
                  id="res-date"
                  className='form-control'
+                 min={TodayAPI}
+                 max={MaxReservationDateAPI}
                  value={state.date}
                  onChange={handleChange}/>
         </div>

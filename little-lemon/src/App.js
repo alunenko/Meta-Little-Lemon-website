@@ -29,8 +29,6 @@ const reducer = (state, action) => {
 };
 
 const App = () => {
-  const availableBookingTimes = initializeTimes();
-
   const [bookingState, dispatch] = useReducer(reducer, initialState);
 
   const handleBookingInputChange = (e) => {
@@ -40,6 +38,8 @@ const App = () => {
       payload: value
     });
   }
+
+  const availableBookingTimes = initializeTimes(bookingState.date);
 
   const updateTimes = () => {
     return availableBookingTimes;
