@@ -8,13 +8,17 @@ import Aboutpage from './pages/Aboutpage';
 import Reservationpage from './pages/Reservationpage';
 import initializeTimes from './components/BookingForm/BookingTimes/BookingTimes';
 import ConfirmedBooking from './components/BookingForm/ConfirmedBooking/ConfirmedBooking';
+import { submitAPI } from './api';
+import Loader from './components/Loader/Loader';
 
 const initialState = {
   date: '',
   time: '',
   guestsAmount: 1,
   occasion: 'Birthday',
-  isConfirmationSuccess: false
+  isConfirmationSuccess: false,
+  reservedData: '',
+  loading: false
 };
 
 const reducer = (state, action) => {
@@ -47,7 +51,13 @@ const reducer = (state, action) => {
     case 'SUCCESS_RESERVATION':
       return {
         ...state,
-        isConfirmationSuccess: !state.isConfirmationSuccess
+        isConfirmationSuccess: !state.isConfirmationSuccess,
+        reservedData: action.payload
+      };
+    case 'LOADING':
+      return {
+        ...state,
+        loading: !state.loading
       };
     default:
       return state;
@@ -92,19 +102,33 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    dispatch({
+      type: 'LOADING'
+    });
+
     const form = e.target;
     const formData = new FormData(form);
 
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
 
-    dispatch({
-      type: 'SUCCESS_RESERVATION'
+    submitAPI(formJson).then((reservedData) => {
+      console.log('responseData ', reservedData);
+      if(reservedData) {
+        dispatch({
+          type: 'LOADING'
+        });
+        dispatch({
+          type: 'SUCCESS_RESERVATION',
+          payload: JSON.parse(reservedData)
+        });
+      }
     });
   };
 
   return (
     <>
+      {bookingState.loading && <Loader />}
       <Header />
       <main>
         <Routes>
@@ -118,7 +142,7 @@ const App = () => {
                 state={bookingState}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-              /> : <ConfirmedBooking/>
+              /> : <ConfirmedBooking reservedData={bookingState.reservedData}/>
             }
           />
         </Routes>

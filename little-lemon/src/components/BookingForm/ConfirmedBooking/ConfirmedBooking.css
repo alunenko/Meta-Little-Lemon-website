@@ -1,0 +1,18 @@
+.container.m-custom {
+    min-height: calc(100vh - 160px);
+}
+
+p {
+  font-family: 'Markazi Text', serif;
+  font-size: 2rem;
+  font-weight: normal;
+  color: var(--ui-kit-black);
+}
+
+p span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background-color: var(--ui-kit-yellow);
+    color: var(--ui-kit-green);
+    text-decoration: underline;
+}

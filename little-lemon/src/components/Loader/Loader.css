@@ -1,0 +1,7 @@
+.loader {
+    background: rgba(73, 94, 87, 0.8);
+    z-index: 9999;
+}
+.loader .text-primary {
+    color: #F4CE14 !important;
+}

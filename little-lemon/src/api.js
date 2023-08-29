@@ -49,7 +49,10 @@ const fetchAPI = (date) => {
 
 const submitAPI = (formData) => new Promise(
     (resolve, reject) => {
-        resolve(JSON.stringify(true));
+        console.log('formData ', formData);
+        setTimeout(() => {
+            resolve(JSON.stringify(formData));
+        }, 3000);
     }
 );
 
