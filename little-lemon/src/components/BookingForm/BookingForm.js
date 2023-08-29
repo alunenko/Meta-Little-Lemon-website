@@ -1,6 +1,7 @@
 import React from 'react';
 import './BookingForm.css';
 import {TodayAPI, MaxReservationDateAPI } from '../../api';
+import { FormValidationMessage } from '../FormValidationMessage/FormValidationMessage';
 
 const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange, handleBlur, handleSubmit }) => {
   return (
@@ -19,7 +20,7 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                  value={state.date}
                  onChange={handleChange}
                  onBlur={handleBlur}/>
-          {state.isDateTouched && !state.isDateValid && <div className="validation">Required</div>}
+          {state.isDateTouched && !state.isDateValid && <FormValidationMessage message='Required'/>}
         </div>
         <div className="form-group">
           <label htmlFor="res-time">Choose time* <span className='form-text'>(related to date field)</span></label>
@@ -33,7 +34,7 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                     <option hidden disabled value=""> -- At first, select the date -- </option>
                     {availableBookingTimes.map((time) => (<option key={time}>{time}</option>))}
           </select>
-          {state.isTimeTouched && !state.isTimeValid && <div className="validation">Required</div>}
+          {state.isTimeTouched && !state.isTimeValid && <FormValidationMessage message='Required'/>}
         </div>
         <div className="form-group">
           <label htmlFor="guests">Number of guests*</label>
@@ -47,8 +48,8 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                  value={state.guestsAmount}
                  onChange={handleChange}
                  onBlur={handleBlur}/>
-            {state.isGuestsAmountTouched && state.guestsAmount == '' && <div className="validation">Required</div>}
-            {state.guestsAmount && !state.isGuestsAmountValid && <div className="validation">Min 2, Max 10 guests</div>}
+            {state.isGuestsAmountTouched && state.guestsAmount == '' && <FormValidationMessage message='Required'/>}
+            {state.guestsAmount && !state.isGuestsAmountValid && <FormValidationMessage message='Min 2, Max 10 guests'/>}
         </div>
         <div className="form-group">
           <label htmlFor="occasion">Occasion*</label>
@@ -62,11 +63,12 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
               <option hidden disabled value=""> -- select an option -- </option>
               {occasionList.map((value) => (<option key={value}>{value}</option>))}
           </select>
-          {state.isOccasionTouched && !state.isOccasionValid && <div className="validation">Required</div>}
+          {state.isOccasionTouched && !state.isOccasionValid && <FormValidationMessage message='Required'/>}
         </div>
         <div>
           <button className="ll-button-primary"
-                type="submit">Make Your reservation</button>
+                  disabled={!state.isFormValid}
+                  type="submit">Make Your reservation</button>
         </div>
       </fieldset>
     </form>

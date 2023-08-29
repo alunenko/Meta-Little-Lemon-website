@@ -27,7 +27,8 @@ const initialState = {
   isGuestsAmountTouched: false,
   isGuestsAmountValid: false,
   isOccasionTouched: false,
-  isOccasionValid: false
+  isOccasionValid: false,
+  isFormValid: false
 };
 
 const reducer = (state, action) => {
@@ -49,6 +50,7 @@ const reducer = (state, action) => {
         availableBookingTimes: action.payload
     };
     case 'UPDATE_TIME':
+      console.log('UPDATE_TIME ', action.payload, action.payload !== '');
       return {
         ...state,
         time: action.payload,
@@ -80,6 +82,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         isOccasionTouched: action.payload,
+      };
+    case 'FORM_VALID':
+      return {
+        ...state,
+        isFormValid: state.isDateValid && state.isTimeValid && state.isGuestsAmountValid && state.isOccasionValid
       };
     case 'SUCCESS_RESERVATION':
       return {
@@ -127,6 +134,10 @@ const App = () => {
         payload: value
       });
     }
+
+    dispatch({
+      type: 'FORM_VALID'
+    });
   };
 
   const handleBlur = (e) => {
@@ -135,28 +146,30 @@ const App = () => {
     if (name === 'date') {
       dispatch({
         type: 'TOUCHED_DATE',
-        payload: !bookingState.isDateTouched
+        payload: true
       });
     } else if (name === 'time') {
       dispatch({
         type: 'TOUCHED_TIME',
-        payload: !bookingState.isTimeTouched
+        payload: true
       });
     } else if (name === 'guestsAmount') {
       dispatch({
         type: 'TOUCHED_GUESTS',
-        payload: !bookingState.isGuestsAmountTouched
+        payload: true
       });
     } else if (name === 'occasion') {
       dispatch({
         type: 'TOUCHED_OCCASION',
-        payload: !bookingState.isOccasionTouched
+        payload: true
       });
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    document.body.classList.add('no-scroll');
 
     dispatch({
       type: 'LOADING'
@@ -174,6 +187,9 @@ const App = () => {
         dispatch({
           type: 'LOADING'
         });
+
+        document.body.classList.remove('no-scroll');
+
         dispatch({
           type: 'SUCCESS_RESERVATION',
           payload: JSON.parse(reservedData)

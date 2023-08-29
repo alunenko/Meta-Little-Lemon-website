@@ -6,7 +6,12 @@ fieldset {
     flex-direction: column;
 }
 
-fieldset div:last-child {
+.form-group {
+    padding-bottom: 24px;
+    position: relative;
+}
+
+fieldset > div:last-child {
     display: flex;
     flex-basis: 100%;
     justify-content: center;
