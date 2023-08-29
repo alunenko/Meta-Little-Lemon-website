@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer';
@@ -7,7 +7,6 @@ import Homepage from './pages/Homepage';
 import Aboutpage from './pages/Aboutpage';
 import Reservationpage from './pages/Reservationpage';
 import initializeTimes from './components/BookingForm/BookingTimes/BookingTimes';
-import updateTimes from './components/BookingForm/UpdateTimes/UpdateTimes';
 import ConfirmedBooking from './components/BookingForm/ConfirmedBooking/ConfirmedBooking';
 
 const initialState = {
@@ -15,7 +14,7 @@ const initialState = {
   time: '',
   guestsAmount: 1,
   occasion: 'Birthday',
-  a: false
+  isConfirmationSuccess: false
 };
 
 const reducer = (state, action) => {
@@ -25,31 +24,69 @@ const reducer = (state, action) => {
         ...state,
         date: action.payload
       };
-    case 'TOGGLE_A': // Add a case for toggling a
+    case 'UPDATE_AVAILABLE_TIMES':
       return {
         ...state,
-        a: !state.a
+        availableBookingTimes: action.payload
     };
+    case 'UPDATE_TIME':
+      return {
+        ...state,
+        time: action.payload
+      };
+    case 'UPDATE_GUESTS':
+      return {
+        ...state,
+        guestsAmount: action.payload
+      };
+    case 'UPDATE_OCCASION':
+      return {
+        ...state,
+        occasion: action.payload
+      };
+    case 'SUCCESS_RESERVATION':
+      return {
+        ...state,
+        isConfirmationSuccess: !state.isConfirmationSuccess
+      };
     default:
       return state;
   }
 };
 
+
 const App = () => {
   const [bookingState, dispatch] = useReducer(reducer, initialState);
 
-  const handleBookingInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    dispatch({
-      type: 'UPDATE_DATE',
-      payload: value
-    });
-  }
-
-  const availableBookingTimes = initializeTimes(bookingState.date);
-
-  const updateTimes = () => {
-    return availableBookingTimes;
+    if (name === 'date') {
+      const availableBookingTimes = initializeTimes(value);
+      console.log('App handleChange availableBookingTimes ', availableBookingTimes);
+      dispatch({
+        type: 'UPDATE_DATE',
+        payload: value
+      });
+      dispatch({
+        type: 'UPDATE_AVAILABLE_TIMES',
+        payload: availableBookingTimes
+      });
+    } else if (name === 'time') {
+      dispatch({
+        type: 'UPDATE_TIME',
+        payload: value
+      });
+    } else if (name === 'guestsAmount') {
+      dispatch({
+        type: 'UPDATE_GUESTS',
+        payload: value
+      });
+    } else if (name === 'occasion') {
+      dispatch({
+        type: 'UPDATE_OCCASION',
+        payload: value
+      });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -62,7 +99,7 @@ const App = () => {
     console.log(formJson);
 
     dispatch({
-      type: 'TOGGLE_A'
+      type: 'SUCCESS_RESERVATION'
     });
   };
 
@@ -76,10 +113,10 @@ const App = () => {
           <Route
             path="/reserve-a-table"
             element={
-              !bookingState.a ? <Reservationpage
-                availableTimes={availableBookingTimes}
+              !bookingState.isConfirmationSuccess ? <Reservationpage
+                availableBookingTimes={bookingState.availableBookingTimes}
                 state={bookingState}
-                handleChange={handleBookingInputChange}
+                handleChange={handleChange}
                 handleSubmit={handleSubmit}
               /> : <ConfirmedBooking/>
             }

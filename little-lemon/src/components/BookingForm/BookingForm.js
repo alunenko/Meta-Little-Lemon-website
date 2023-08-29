@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './BookingForm.css';
 import {TodayAPI, MaxReservationDateAPI } from '../../api';
 
-const BookingForm = ({ availableTimes, state, handleChange, handleSubmit }) => {
+const BookingForm = ({ availableBookingTimes, state, handleChange, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <fieldset className='d-flex justify-content-between gap-3'>
@@ -27,7 +27,7 @@ const BookingForm = ({ availableTimes, state, handleChange, handleSubmit }) => {
                   name="time"
                   value={state.time}
                   onChange={handleChange}>
-                    {availableTimes.map(time => (<option key={time}>{time}</option>))}
+                    {availableBookingTimes.map((time) => (<option key={time}>{time}</option>))}
           </select>
         </div>
         <div className="form-group">
@@ -62,5 +62,9 @@ const BookingForm = ({ availableTimes, state, handleChange, handleSubmit }) => {
     </form>
   );
 }
+
+BookingForm.defaultProps = {
+  availableBookingTimes: [],
+};
 
 export default BookingForm;
