@@ -14,11 +14,20 @@ import Loader from './components/Loader/Loader';
 const initialState = {
   date: '',
   time: '',
-  guestsAmount: 1,
-  occasion: 'Birthday',
+  guestsAmount: '',
+  occasionList: ['Birthday', 'Engagement', 'Anniversary'],
+  occasion: '',
   isConfirmationSuccess: false,
   reservedData: '',
-  loading: false
+  loading: false,
+  isDateTouched: false,
+  isDateValid: false,
+  isTimeTouched: false,
+  isTimeValid: false,
+  isGuestsAmountTouched: false,
+  isGuestsAmountValid: false,
+  isOccasionTouched: false,
+  isOccasionValid: false
 };
 
 const reducer = (state, action) => {
@@ -26,7 +35,13 @@ const reducer = (state, action) => {
     case 'UPDATE_DATE':
       return {
         ...state,
-        date: action.payload
+        date: action.payload,
+        isDateValid: action.payload !== ''
+      };
+    case 'TOUCHED_DATE':
+      return {
+        ...state,
+        isDateTouched: action.payload,
       };
     case 'UPDATE_AVAILABLE_TIMES':
       return {
@@ -36,17 +51,35 @@ const reducer = (state, action) => {
     case 'UPDATE_TIME':
       return {
         ...state,
-        time: action.payload
+        time: action.payload,
+        isTimeValid: action.payload !== ''
+      };
+    case 'TOUCHED_TIME':
+      return {
+        ...state,
+        isTimeTouched: action.payload,
       };
     case 'UPDATE_GUESTS':
       return {
         ...state,
-        guestsAmount: action.payload
+        guestsAmount: action.payload,
+        isGuestsAmountValid: action.payload >= 2 && action.payload <= 10
+      };
+    case 'TOUCHED_GUESTS':
+      return {
+        ...state,
+        isGuestsAmountTouched: action.payload,
       };
     case 'UPDATE_OCCASION':
       return {
         ...state,
-        occasion: action.payload
+        occasion: action.payload,
+        isOccasionValid: action.payload !== ''
+      };
+    case 'TOUCHED_OCCASION':
+      return {
+        ...state,
+        isOccasionTouched: action.payload,
       };
     case 'SUCCESS_RESERVATION':
       return {
@@ -64,22 +97,19 @@ const reducer = (state, action) => {
   }
 };
 
-
 const App = () => {
   const [bookingState, dispatch] = useReducer(reducer, initialState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'date') {
-      const availableBookingTimes = initializeTimes(value);
-      console.log('App handleChange availableBookingTimes ', availableBookingTimes);
       dispatch({
         type: 'UPDATE_DATE',
         payload: value
       });
       dispatch({
         type: 'UPDATE_AVAILABLE_TIMES',
-        payload: availableBookingTimes
+        payload: initializeTimes(value)
       });
     } else if (name === 'time') {
       dispatch({
@@ -98,6 +128,32 @@ const App = () => {
       });
     }
   };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+
+    if (name === 'date') {
+      dispatch({
+        type: 'TOUCHED_DATE',
+        payload: !bookingState.isDateTouched
+      });
+    } else if (name === 'time') {
+      dispatch({
+        type: 'TOUCHED_TIME',
+        payload: !bookingState.isTimeTouched
+      });
+    } else if (name === 'guestsAmount') {
+      dispatch({
+        type: 'TOUCHED_GUESTS',
+        payload: !bookingState.isGuestsAmountTouched
+      });
+    } else if (name === 'occasion') {
+      dispatch({
+        type: 'TOUCHED_OCCASION',
+        payload: !bookingState.isOccasionTouched
+      });
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -140,7 +196,9 @@ const App = () => {
               !bookingState.isConfirmationSuccess ? <Reservationpage
                 availableBookingTimes={bookingState.availableBookingTimes}
                 state={bookingState}
+                occasionList={bookingState.occasionList}
                 handleChange={handleChange}
+                handleBlur={handleBlur}
                 handleSubmit={handleSubmit}
               /> : <ConfirmedBooking reservedData={bookingState.reservedData}/>
             }
