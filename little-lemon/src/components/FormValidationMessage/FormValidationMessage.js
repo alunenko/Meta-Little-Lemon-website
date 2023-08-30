@@ -3,6 +3,6 @@ import React from 'react';
 
 export const FormValidationMessage = ({message}) => {
   return (
-    <div className="text-danger">{message}</div>
+    <div className="text-danger" aria-invalid="true">{message}</div>
   )
 }

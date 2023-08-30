@@ -15,6 +15,7 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                  name="date"
                  id="res-date"
                  className='form-control'
+                 aria-label="Choose date"
                  min={TodayAPI}
                  max={MaxReservationDateAPI}
                  value={state.date}
@@ -28,6 +29,7 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                   required
                   className='form-control'
                   name="time"
+                  aria-label="Choose time"
                   value={state.time}
                   onChange={handleChange}
                   onBlur={handleBlur}>
@@ -45,10 +47,11 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                  max="10"
                  id="guests"
                  className='form-control'
+                 aria-label="Set guests amount"
                  value={state.guestsAmount}
                  onChange={handleChange}
                  onBlur={handleBlur}/>
-            {state.isGuestsAmountTouched && state.guestsAmount == '' && <FormValidationMessage message='Required'/>}
+            {state.isGuestsAmountTouched && state.guestsAmount === '' && <FormValidationMessage message='Required'/>}
             {state.guestsAmount && !state.isGuestsAmountValid && <FormValidationMessage message='Min 2, Max 10 guests'/>}
         </div>
         <div className="form-group">
@@ -57,6 +60,7 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
                   required
                   name="occasion"
                   className='form-control'
+                  aria-label="Select occasion"
                   value={state.occasion}
                   onChange={handleChange}
                   onBlur={handleBlur}>
@@ -67,6 +71,8 @@ const BookingForm = ({ availableBookingTimes, occasionList, state, handleChange,
         </div>
         <div>
           <button className="ll-button-primary"
+                  aria-label="Make Your reservation"
+                  aria-disabled={!state.isFormValid}
                   disabled={!state.isFormValid}
                   type="submit">Make Your reservation</button>
         </div>
